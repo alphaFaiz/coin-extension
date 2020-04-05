@@ -1,0 +1,13 @@
+{
+    "name": "Bitcoin Price Tracking",
+    "description": "My First Chrome Extension",
+    "version": "1.0",
+    "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+    },
+    "permissions": [
+      "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD"
+    ],
+    "manifest_version": 2
+  }
