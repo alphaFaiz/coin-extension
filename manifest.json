@@ -7,7 +7,8 @@
       "default_popup": "popup.html"
     },
     "permissions": [
-      "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD"
+      "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD",
+      "https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra"
     ],
     "manifest_version": 2
   }

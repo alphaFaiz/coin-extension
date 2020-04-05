@@ -8,7 +8,7 @@ async function fetchCoinAPI() {
 }
 
 const fetchExchange = async () => {
-    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=9d719294454dff011812`);
+    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND`);
     result = await result.json();
     return result.USD_VND;
 }
