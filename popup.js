@@ -1,8 +1,18 @@
 async function fetchCoinAPI() {
+    // BTC
     let url = 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD';
-    let result = await fetch(url);
-    let jsonResult = await result.json();
-    document.getElementById('USDPrice').innerHTML = jsonResult.USD;
+    let BTCresult = await fetch(url);
+    let BTCjsonResult = await BTCresult.json();
+    document.getElementById('BTCPrice').innerHTML = BTCjsonResult.USD;
+    // ETH
+    let ETHresult = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD');
+    let ETHjsonResult = await ETHresult.json();
+    document.getElementById('ETHPrice').innerHTML = ETHjsonResult.USD;
+    // XLM
+    let XLMresult = await fetch('https://min-api.cryptocompare.com/data/price?fsym=XLM&tsyms=USD');
+    let XLMjsonResult = await XLMresult.json();
+    document.getElementById('XLMPrice').innerHTML = XLMjsonResult.USD;
+    // Exchange USD to VNĐ
     let VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
 }
