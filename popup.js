@@ -1,24 +1,24 @@
+const coinsList = [
+    'BTC',
+    'ETH',
+    'XLM',
+    'LTC'
+];
+
 async function fetchCoinAPI() {
-    // BTC
-    let url = 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD';
-    let BTCresult = await fetch(url);
-    let BTCjsonResult = await BTCresult.json();
-    document.getElementById('BTCPrice').innerHTML = BTCjsonResult.USD;
-    // ETH
-    let ETHresult = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD');
-    let ETHjsonResult = await ETHresult.json();
-    document.getElementById('ETHPrice').innerHTML = ETHjsonResult.USD;
-    // XLM
-    let XLMresult = await fetch('https://min-api.cryptocompare.com/data/price?fsym=XLM&tsyms=USD');
-    let XLMjsonResult = await XLMresult.json();
-    document.getElementById('XLMPrice').innerHTML = XLMjsonResult.USD;
+    coinsList.forEach(async(coinName) => {
+        let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USD`;
+        let fetchResult = await fetch(url);
+        let jsonResult = await fetchResult.json();
+        document.getElementById(`${coinName}Price`).innerHTML = jsonResult.USD;
+    });
     // Exchange USD to VNĐ
     let VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
 }
 
 const fetchExchange = async () => {
-    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND`); //add this to your url &compact=ultra&apiKey=${yourkey}
+    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=`); //add this to your url &compact=ultra&apiKey=${yourkey}
     result = await result.json();
     return result.USD_VND;
 }
