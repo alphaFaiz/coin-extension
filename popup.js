@@ -1,8 +1,9 @@
+//change coins list in this array
 const coinsList = [
     'BTC',
     'ETH',
+    'BNB',
     'XLM',
-    'LTC'
 ];
 
 async function fetchCoinAPI() {
@@ -10,7 +11,7 @@ async function fetchCoinAPI() {
         let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USD`;
         let fetchResult = await fetch(url);
         let jsonResult = await fetchResult.json();
-        document.getElementById(`${coinName}Price`).innerHTML = jsonResult.USD;
+        document.getElementById(`currenciesList`).innerHTML += `<h3>${coinName}: <span style="color: green;">${jsonResult.USD}</span> USD</h3>`
     });
     // Exchange USD to VNĐ
     let VNDcurrency = await fetchExchange();
