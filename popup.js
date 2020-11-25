@@ -3,6 +3,7 @@ const coinsList = [
     'BTC',
     'ETH',
     'BNB',
+    'LTC',
     'XLM',
 ];
 

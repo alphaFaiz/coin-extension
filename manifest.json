@@ -1,6 +1,6 @@
 {
     "name": "Bitcoin Price Tracking",
-    "description": "My First Chrome Extension",
+    "description": "Nguyen Manh Tung's First Chrome Extension",
     "version": "1.0",
     "browser_action": {
       "default_icon": "icon.png",
