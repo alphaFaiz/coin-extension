@@ -12,7 +12,8 @@ async function fetchCoinAPI() {
         let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USD`;
         let fetchResult = await fetch(url);
         let jsonResult = await fetchResult.json();
-        document.getElementById(`currenciesList`).innerHTML += `<h3>${coinName}: <span style="color: green;">${jsonResult.USD}</span> USD</h3>`
+        document.getElementById(`currenciesList`).innerHTML += `
+        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USD">${coinName}:</a> <span style="color: green;">${jsonResult.USD}</span> USD</h3>`
     });
     // Exchange USD to VNĐ
     let VNDcurrency = await fetchExchange();
