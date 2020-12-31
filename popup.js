@@ -48,7 +48,7 @@ const fetchGoldPrice = async () => {
 }
 
 const fetchExchange = async () => {
-    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=9d719294454dff011812`); //add this to your url &compact=ultra&apiKey=${yourkey}
+    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=`); //add this to your url &compact=ultra&apiKey=${yourkey}
     result = await result.json();
     return result.USD_VND;
 }
