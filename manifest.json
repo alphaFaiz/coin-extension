@@ -1,5 +1,5 @@
 {
-    "name": "Bitcoin Price Tracking",
+    "name": "Crypto Price Tracking",
     "description": "Nguyen Manh Tung's First Chrome Extension",
     "version": "1.0",
     "browser_action": {
