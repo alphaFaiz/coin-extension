@@ -7,7 +7,8 @@ const coinsList = [
     'XLM',
     'TRX',
     'XRP',
-    'DHT'
+    'DHT',
+    'USDT'
 ];
 
 const fetchCoinAPI = async () => {
