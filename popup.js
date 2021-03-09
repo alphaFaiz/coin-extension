@@ -5,19 +5,19 @@ const coinsList = [
     'BNB',
     'LTC',
     'XLM',
+    'BAT',
+    'LIT',
     'TRX',
-    'XRP',
-    'DHT',
     'USDT'
 ];
 
 const fetchCoinAPI = async () => {
-    coinsList.forEach(async(coinName) => {
-        let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USD`;
+    coinsList.forEach(async (coinName) => {
+        let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`;
         let fetchResult = await fetch(url);
         let jsonResult = await fetchResult.json();
         document.getElementById(`currenciesList`).innerHTML += `
-        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USD">${coinName}:</a> <span style="color: green;">${jsonResult.USD}</span>$</h3>`
+        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USDT">${coinName}:</a> <span style="color: green;">${jsonResult.USDT}</span>$</h3>`
     });
     // // get gold price
     // document.getElementById('goldVNDPrice').innerHTML = await fetchGoldPrice();
@@ -38,10 +38,10 @@ const fetchGoldPrice = async () => {
         redirect: 'follow'
     };
 
-    let result = await fetch("https://www.goldapi.io/api/XAU/USD", requestOptions).then(response => response.text())
-    .then(result => result);
-    if(typeof result == 'string') result = JSON.parse(result);
-    if(typeof result == 'object') {
+    let result = await fetch("https://www.goldapi.io/api/XAU/USDT", requestOptions).then(response => response.text())
+        .then(result => result);
+    if (typeof result == 'string') result = JSON.parse(result);
+    if (typeof result == 'object') {
         result = result.price;
         result = result.toFixed(2);
     }
@@ -49,7 +49,7 @@ const fetchGoldPrice = async () => {
 }
 
 const fetchExchange = async () => {
-    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=`); //add this to your url &compact=ultra&apiKey=${yourkey}
+    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=adeffb2a37fa8b7a98aa`); //add this to your url &compact=ultra&apiKey=${yourkey}
     result = await result.json();
     return result.USD_VND;
 }
@@ -62,8 +62,8 @@ function formatMoney(n, c, d, t) {
         i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
         j = (j = i.length) > 3 ? j % 3 : 0;
 
-    var ret= s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "")+' VNĐ';
-    return ret.replace('.00','');
+    var ret = s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "") + ' VNĐ';
+    return ret.replace('.00', '');
 }
 
 fetchCoinAPI();
