@@ -2,13 +2,10 @@
 const coinsList = [
     'BTC',
     'ETH',
-    'BNB',
-    'LTC',
-    'XLM',
-    'BAT',
-    'LIT',
-    'TRX',
-    'USDT'
+    'BZRX',
+    'TOMO',
+    'LINK',
+    'USDT',
 ];
 
 const fetchCoinAPI = async () => {
