@@ -2,6 +2,7 @@
 const coinsList = [
     'BTC',
     'ETH',
+    'IRIS',
     'BZRX',
     'TOMO',
     'LINK',
