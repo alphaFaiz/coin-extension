@@ -2,20 +2,23 @@
 const coinsList = [
     'BTC',
     'ETH',
-    'IRIS',
-    'BZRX',
-    'TOMO',
-    'LINK',
+    'FLM-0.45',
+    'GXS-0.8',
+    'TOMO-5',
+    'LINK-100',
     'USDT',
 ];
 
 const fetchCoinAPI = async () => {
-    coinsList.forEach(async (coinName) => {
+    coinsList.forEach(async (coinNameString) => {
+        const coinNameComponents = coinNameString.split('-');
+        const coinName = coinNameComponents[0];
+        const target = coinNameComponents[1] ? `(${coinNameComponents[1]})` : '';
         let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`;
         let fetchResult = await fetch(url);
         let jsonResult = await fetchResult.json();
         document.getElementById(`currenciesList`).innerHTML += `
-        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USDT">${coinName}:</a> <span style="color: green;">${jsonResult.USDT}</span>$</h3>`
+        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USDT">${coinName}${target}:</a> <span style="color: green;">${jsonResult.USDT}</span>$</h3>`
     });
     // // get gold price
     // document.getElementById('goldVNDPrice').innerHTML = await fetchGoldPrice();
