@@ -2,8 +2,7 @@
 const coinsList = [
     'BTC',
     'ETH',
-    'FLM-0.45',
-    'GXS-0.8',
+    'OGN-1.2',
     'TOMO-5',
     'LINK-100',
     'USDT',
