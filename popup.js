@@ -3,7 +3,7 @@ const coinsList = [
     'BTC',
     'ETH',
     'OGN-0.79_1.2',
-    'TOMO-2.5_5',
+    'TOMO-2.5_3.2',
     'LINK-100',
     'USDT',
 ];
