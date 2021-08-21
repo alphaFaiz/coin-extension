@@ -2,9 +2,9 @@
 const coinsList = [
     'BTC',
     'ETH',
-    'SLP-0.185_0.253',
+    'TLM-0.326_0.58',
+    'TCT-0.029_0.039',
     'OGN-0.79_1.2',
-    'TOMO-2.5_3.2',
     'LINK-47_100',
     'USDT',
 ];
@@ -13,12 +13,29 @@ const fetchCoinAPI = async () => {
     coinsList.forEach(async (coinNameString) => {
         const coinNameComponents = coinNameString.split('-');
         const coinName = coinNameComponents[0];
-        const target = coinNameComponents[1] ? `(${coinNameComponents[1]})` : '';
+        const range = coinNameComponents[1] ? `(${coinNameComponents[1]})` : '';
+
         let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`;
         let fetchResult = await fetch(url);
         let jsonResult = await fetchResult.json();
+        const currentPrice = jsonResult.USDT;
+        
+        let interest = 0;
+        let interestElement = `<span></span>`;
+        if (range) {
+            let [entry, tp] = coinNameComponents[1].split('_');
+            if (!isNaN(entry)) {
+                interest = 100 * ( Number(currentPrice) - Number(entry) ) / entry;
+            }
+        }
+        if (interest != 0) {
+            interestElement = interest > 0 ? 
+            `<span style="color: green;">+${interest.toFixed(2)}%</span>` :
+            `<span style="color: red;">${interest.toFixed(2)}%</span>`
+        }
+
         document.getElementById(`currenciesList`).innerHTML += `
-        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USDT">${coinName}${target}:</a> <span style="color: green;">${jsonResult.USDT}</span>$</h3>`
+        <h3><a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USDT">${coinName}${range}:</a> <span style="color: blue;">$${currentPrice}</span> ${interestElement}</h3>`
     });
     // // get gold price
     // document.getElementById('goldVNDPrice').innerHTML = await fetchGoldPrice();
