@@ -3,11 +3,11 @@
 const coinsList = [
     'BTC',
     'ETH',
+    'PERL-0.096_0.139-115.97',
     'TLM-0.326_0.58-128.8',
     'TCT-0.029_0.039-86',
     'OGN-0.79_1.2-106.01',
     'LINK-47_100-100',
-    'USDT',
 ];
 
 const fetchCoinAPI = async () => {
@@ -51,6 +51,9 @@ const fetchCoinAPI = async () => {
         </h3>`
     });
     // Exchange USD to VNĐ
+    let usdtFetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`);
+    let usdtJsonResult = await usdtFetchResult.json();
+    document.getElementById('USDT').innerHTML = `${usdtJsonResult.USD}$`;
     let VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
     document.getElementById('totalInterest').innerHTML = `${totalInterestAmount.toFixed(2)}$`;
