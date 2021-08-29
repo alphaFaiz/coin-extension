@@ -13,14 +13,11 @@ const coinsList = [
 const fetchCoinAPI = async () => {
     let totalInterestAmount = 0;
 
-    coinsList.forEach(async (coinNameString) => {
+    for (const coinNameString of coinsList) {
         const coinNameComponents = coinNameString.split('-');
-        // const coinName = coinNameComponents[0];
-        // const range = coinNameComponents[1] ? `(${coinNameComponents[1]})` : '';
         let [coinName, range, capital] = coinNameComponents;
 
-        let url = `https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`;
-        let fetchResult = await fetch(url);
+        let fetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`);
         let jsonResult = await fetchResult.json();
         const currentPrice = jsonResult.USDT;
         
@@ -49,7 +46,8 @@ const fetchCoinAPI = async () => {
         <a target="blank" href="https://www.cryptocompare.com/coins/${coinName.toLowerCase()}/overview/USDT">${coinName}${range}:</a> 
         <span style="color: blue;">$${currentPrice}</span> ${interestElement}
         </h3>`
-    });
+    }
+
     // Exchange USD to VNĐ
     let usdtFetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`);
     let usdtJsonResult = await usdtFetchResult.json();
