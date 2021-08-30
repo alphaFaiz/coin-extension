@@ -49,12 +49,12 @@ const fetchCoinAPI = async () => {
     }
 
     // Exchange USD to VNĐ
+    document.getElementById('totalInterest').innerHTML = `${totalInterestAmount.toFixed(2)}$`;
     let usdtFetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`);
     let usdtJsonResult = await usdtFetchResult.json();
     document.getElementById('USDT').innerHTML = `${usdtJsonResult.USD}$`;
     let VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
-    document.getElementById('totalInterest').innerHTML = `${totalInterestAmount.toFixed(2)}$`;
 }
 
 const fetchExchange = async () => {
