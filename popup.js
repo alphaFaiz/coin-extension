@@ -4,6 +4,7 @@ const coinsList = [
     'BTC',
     'ETH',
     'BOND-28.39_32-232.798',
+    'SLRS-0.3988_1-104',
     'PERL-0.096_0.139-115.97',
     'TLM-0.326_0.58-128.8',
     'TCT-0.029_0.039-86',
@@ -20,8 +21,13 @@ const fetchCoinAPI = async () => {
 
         let fetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`);
         let jsonResult = await fetchResult.json();
-        const currentPrice = jsonResult.USDT;
-        
+        let currentPrice = jsonResult.USDT;
+        if (!currentPrice) {
+            fetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USD`);
+            jsonResult = await fetchResult.json();
+            currentPrice = jsonResult.USD;
+        }
+
         let interest = 0;
 
         let interestElement = `<span></span>`;
