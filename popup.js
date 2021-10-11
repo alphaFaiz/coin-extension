@@ -3,6 +3,8 @@
 const coinsList = [
     'BTC',
     'ETH',
+    'NEAR-7.5-96',
+    'CELO-5.7-32.5',
     'SLRS-0.4308_2-104',
     'COCOS-0.82_1-100.86',
     'PERL-0.096_0.139-115.97',
@@ -35,7 +37,7 @@ const fetchCoinAPI = async () => {
             if (!isNaN(entry)) {
                 interest = 100 * ( Number(currentPrice) - Number(entry) ) / entry;
             }
-            range = `(${entry}_${tp})`
+            range = `(${entry}${tp ? '_' + tp : ''})`
         } else {
             range = ''
         }
