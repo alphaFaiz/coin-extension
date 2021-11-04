@@ -3,6 +3,8 @@
 const coinsList = [
     'BTC',
     'ETH',
+    'C98',
+    'ATOM',
     'NEAR-7.5-96',
     'CELO-5.7-32.5',
     'SLRS-0.4308_2-104',
