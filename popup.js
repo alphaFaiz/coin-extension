@@ -1,17 +1,17 @@
 //change coins list in this array
-//coin's name - entry_target - capital
+//coin's name - entry_target - quantity
 const coinsList = [
     'BTC',
     'ETH',
-    'C98-3.8-27.5',
-    'ATOM-37.9-8.29',
-    'NEAR-7.5-96',
-    'CELO-5.7-32.5',
-    'SLRS-0.4308_2-104',
-    'PERL-0.096_0.139-115.97',
-    'TLM-0.326_0.35-128.8',
-    'OGN-0.79_1.5-26.68',
-    'LINK-47_50.9-100',
+    'C98-3.8-27.47',
+    'ATOM-37.9-8.28',
+    'NEAR-7.5-12.8',
+    'CELO-5.7-5.7',
+    'SLRS-0.4308_2-241.92',
+    'PERL-0.096_0.139-1206.89',
+    'TLM-0.326_0.35-395.1',
+    'OGN-0.79_1.5-34.06',
+    'LINK-47_50.9-2.14',
 ];
 
 const fetchCoinAPI = async () => {
@@ -19,7 +19,7 @@ const fetchCoinAPI = async () => {
 
     for (const coinNameString of coinsList) {
         const coinNameComponents = coinNameString.split('-');
-        let [coinName, range, capital] = coinNameComponents;
+        let [coinName, range, quantity] = coinNameComponents;
 
         let fetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coinName}&tsyms=USDT`);
         let jsonResult = await fetchResult.json();
@@ -32,10 +32,12 @@ const fetchCoinAPI = async () => {
 
         let interest = 0;
 
+        let capital = 0;
         let interestElement = `<span></span>`;
         if (range) {
             let [entry, tp] = range.split('_');
             if (!isNaN(entry)) {
+                capital = Number(entry) * Number(quantity);
                 interest = 100 * ( Number(currentPrice) - Number(entry) ) / entry;
             }
             range = `(${entry}${tp ? '_' + tp : ''})`
