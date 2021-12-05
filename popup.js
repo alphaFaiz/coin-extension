@@ -3,6 +3,7 @@
 const coinsList = [
     'BTC',
     'ETH',
+    'GLCH',
     'C98-3.8-27.47',
     'ATOM-37.9-8.28',
     'NEAR-7.5-12.8',
