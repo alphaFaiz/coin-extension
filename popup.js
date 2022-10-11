@@ -2,14 +2,14 @@
 //coin's name - entry_target - quantity
 const coinsList = [
     'BTC',
-    'ETH',
-    'GLCH',
+    'BNB-409-0.072',
+    'POND-0.0679_0.1-2589.93519',
     'C98-3.8-27.47',
-    'ATOM-37.9-8.28',
     'NEAR-7.5-20.7',
-    'CELO-5.7-14.59',
+    'CELO-5.7_8.8-14.59',
     'SLRS-0.4308_2-241.92',
     'LINK-47_50.9-2.14',
+    'SAND-4.3-5',
 ];
 
 const fetchCoinAPI = async () => {
@@ -62,14 +62,23 @@ const fetchCoinAPI = async () => {
     let usdtFetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`);
     let usdtJsonResult = await usdtFetchResult.json();
     document.getElementById('USDT').innerHTML = `${usdtJsonResult.USD}$`;
+    let goldPrice = await goldExchange();
+    document.getElementById('goldPrice').innerHTML = `${goldPrice}$`;
     let VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
 }
 
 const fetchExchange = async () => {
-    let result = await fetch(`https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=adeffb2a37fa8b7a98aa`); //add this to your url &compact=ultra&apiKey=${yourkey}
+    let result = await fetch(`https://api.metalpriceapi.com/v1/latest?api_key=29e8679fe7670f9d972d3efbc4f9207e&base=USD&currencies=VND`); //add this to your url &compact=ultra&apiKey=${yourkey}
     result = await result.json();
-    return result.USD_VND;
+    return result.rates.VND;
+}
+
+const goldExchange = async () => {
+    let result = await fetch(`https://api.metalpriceapi.com/v1/latest?api_key=29e8679fe7670f9d972d3efbc4f9207e&base=XAU&currencies=USD`);
+    result = await result.json();
+    console.log(result)
+    return result.rates.USD;
 }
 
 function formatMoney(n, c, d, t) {
