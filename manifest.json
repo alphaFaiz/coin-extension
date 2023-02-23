@@ -1,14 +1,15 @@
 {
-    "name": "Crypto Price Tracking",
-    "description": "Nguyen Manh Tung's First Chrome Extension",
-    "version": "1.0",
-    "browser_action": {
-      "default_icon": "icon.png",
-      "default_popup": "popup.html"
-    },
-    "permissions": [
-      "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD",
-      "https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra"
-    ],
-    "manifest_version": 2
-  }
+  "name": "Crypto Price Tracking",
+  "description": "Nguyen Manh Tung's First Chrome Extension",
+  "version": "1.0",
+  "icons": { "512": "icon.png" },
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "host_permissions": [
+    "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD",
+    "https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra"
+  ],
+  "manifest_version": 3
+}
