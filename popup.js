@@ -75,10 +75,10 @@ const fetchExchange = async () => {
 }
 
 const goldExchange = async () => {
-    let result = await fetch(`https://api.metalpriceapi.com/v1/latest?api_key=29e8679fe7670f9d972d3efbc4f9207e&base=XAU&currencies=USD`);
-    result = await result.json();
+    let result = await fetch(`http://34.87.171.102:4001/gold-price`);
     console.log(result)
-    return result.rates.USD;
+    result = await result.json();
+    return result.sellPrice;
 }
 
 function formatMoney(n, c, d, t) {
