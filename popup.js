@@ -59,13 +59,16 @@ const fetchCoinAPI = async () => {
 
     // Exchange USD to VNĐ
     document.getElementById('totalInterest').innerHTML = `${totalInterestAmount.toFixed(2)}$`;
-    let usdtFetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`);
+    const [ goldPrice, usdtFetchResult, VNDcurrency ] = await Promise.all([
+        goldExchange(),
+        fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`),
+        fetchExchange(),
+    ]);
+    
     let usdtJsonResult = await usdtFetchResult.json();
     document.getElementById('USDT').innerHTML = `${usdtJsonResult.USD}$`;
-    let goldPrice = await goldExchange();
-    document.getElementById('goldPrice').innerHTML = `${goldPrice}$`;
-    let VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
+    document.getElementById('goldPrice').innerHTML = `${goldPrice} VNĐ`;
 }
 
 const fetchExchange = async () => {
@@ -76,9 +79,8 @@ const fetchExchange = async () => {
 
 const goldExchange = async () => {
     let result = await fetch(`http://34.87.171.102:4001/gold-price`);
-    console.log(result)
     result = await result.json();
-    return result.sellPrice;
+    return `${result.buyPrice}/${result.sellPrice}`;
 }
 
 function formatMoney(n, c, d, t) {
