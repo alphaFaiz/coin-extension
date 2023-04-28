@@ -10,7 +10,7 @@
   "host_permissions": [
     "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD",
     "https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra",
-    "http://34.87.171.102:4001/gold-price"
+    "http://34.126.69.107:4001//gold-price"
   ],
   "manifest_version": 3
 }
