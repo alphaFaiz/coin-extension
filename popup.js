@@ -72,7 +72,7 @@ const fetchExchange = async () => {
 }
 
 const goldExchange = async () => {
-    let result = await fetch(`http://35.198.224.141:4001/gold-price`);
+    let result = await fetch(`http://35.234.248.123:4001/gold-price`);
     result = await result.json();
     return `${result.buyPrice}/${result.sellPrice}`;
 }
