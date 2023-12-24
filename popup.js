@@ -4,6 +4,7 @@ const coinsList = [
     'BTC',
     'BNB-409-0.072',
     'NEAR-7.5-20.7',
+    'MINA-1.1-5'
 ];
 
 const fetchCoinAPI = async () => {
