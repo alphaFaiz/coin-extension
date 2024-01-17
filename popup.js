@@ -4,7 +4,7 @@ const coinsList = [
     'BTC',
     'BNB-409-0.072',
     'NEAR-7.5-20.7',
-    'MINA-1.1-5'
+    'MINA-1.1_5-1.0357'
 ];
 
 const fetchCoinAPI = async () => {
@@ -54,15 +54,18 @@ const fetchCoinAPI = async () => {
 
     // Exchange USD to VNĐ
     document.getElementById('totalInterest').innerHTML = `${totalInterestAmount.toFixed(2)}$`;
-    const [ goldPrice, usdtFetchResult, VNDcurrency ] = await Promise.all([
-        goldExchange(),
-        fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`),
-        fetchExchange(),
-    ]);
     
-    let usdtJsonResult = await usdtFetchResult.json();
+    // const [ goldPrice, usdtFetchResult, VNDcurrency ] = await Promise.all([
+    //     goldExchange(),
+    //     fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`),
+    //     fetchExchange(),
+    // ]);
+    const usdtFetchResult = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=USD`);
+    let usdtJsonResult = await usdtFetchResult.json();    
     document.getElementById('USDT').innerHTML = `${usdtJsonResult.USD}$`;
+    const VNDcurrency = await fetchExchange();
     document.getElementById('VNDPrice').innerHTML = formatMoney(VNDcurrency);
+    const goldPrice = await goldExchange();
     document.getElementById('goldPrice').innerHTML = `${goldPrice} VNĐ`;
 }
 
